@@ -98,15 +98,15 @@ public class MainActivity extends AppCompatActivity{
 
     private void setTabIcon(TabLayout tabLayout){
         View view1 = getLayoutInflater().inflate(R.layout.tab_icon_view, null);
-        view1.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_store);
+        view1.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_event);
         tabLayout.addTab(tabLayout.newTab().setCustomView(view1));
 
         View view2 = getLayoutInflater().inflate(R.layout.tab_icon_view, null);
-        view2.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_map);
+        view2.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_store);
         tabLayout.addTab(tabLayout.newTab().setCustomView(view2));
 
         View view3 = getLayoutInflater().inflate(R.layout.tab_icon_view, null);
-        view3.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_event);
+        view3.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_map);
         tabLayout.addTab(tabLayout.newTab().setCustomView(view3));
     }
 

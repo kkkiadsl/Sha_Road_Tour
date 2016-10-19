@@ -30,7 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  */
 public class page_map extends android.support.v4.app.Fragment implements OnMapReadyCallback {
 
-    static final LatLng SEOUL = new LatLng(37.481345, 126.952655);
+    static final LatLng SEOUL = new LatLng(37.478583, 126.955566);
     private static final String KEY_MAP_SAVED_STATE = "mapState";
     private GoogleMap map;
     private View view;

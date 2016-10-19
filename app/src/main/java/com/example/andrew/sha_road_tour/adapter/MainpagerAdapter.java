@@ -32,13 +32,13 @@ public class MainpagerAdapter extends FragmentStatePagerAdapter{
 
             switch (position){
                 case 0 :
-                    main_fragment = new page_store();
+                    main_fragment = new page_event();
                     break;
                 case 1 :
-                    main_fragment = new page_map();
+                    main_fragment = new page_store();
                     break;
                 case 2 :
-                    main_fragment = new page_event();
+                    main_fragment = new page_map();
                     break;
             }
             return main_fragment;
