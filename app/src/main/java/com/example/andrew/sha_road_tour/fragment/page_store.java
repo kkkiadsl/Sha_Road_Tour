@@ -53,6 +53,7 @@ public class page_store extends android.support.v4.app.Fragment {
             Log.e("Tag", String.valueOf(i));
         }
 
+
         recyclerView.setAdapter(new RecyclerAdapter(view.getContext(), items, R.layout.fragment_store));
 
         return view;

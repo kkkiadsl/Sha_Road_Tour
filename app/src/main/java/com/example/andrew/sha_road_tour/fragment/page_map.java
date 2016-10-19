@@ -8,12 +8,15 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.andrew.sha_road_tour.R;
+import com.example.andrew.sha_road_tour.adapter.Item;
 import com.example.andrew.sha_road_tour.service.GpsInfo;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
@@ -27,7 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  */
 public class page_map extends android.support.v4.app.Fragment implements OnMapReadyCallback {
 
-    static final LatLng SEOUL = new LatLng(37.56, 126.97);
+    static final LatLng SEOUL = new LatLng(37.481345, 126.952655);
     private static final String KEY_MAP_SAVED_STATE = "mapState";
     private GoogleMap map;
     private View view;
@@ -36,6 +39,7 @@ public class page_map extends android.support.v4.app.Fragment implements OnMapRe
     MapView mapView;
     double lat;
     double lon;
+    final int ITEM_SIZE = 6;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup contanier, Bundle saveInstanceState) {
@@ -52,10 +56,6 @@ public class page_map extends android.support.v4.app.Fragment implements OnMapRe
                 lon = location.getLongitude();
 
                 latLng = new LatLng(lat, lon);
-
-
-
-
             }
 
             public void onStatusChanged(String provider, int status,
@@ -155,10 +155,29 @@ public class page_map extends android.support.v4.app.Fragment implements OnMapRe
         this.map.setMyLocationEnabled(true);
 
         MarkerOptions opFirts = new MarkerOptions();
-        opFirts.position(latLng);
-        opFirts.title("현재 워치");
-        opFirts.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_stat_name));
-        map.addMarker(opFirts).showInfoWindow();
+
+        Item[] item = new Item[ITEM_SIZE];
+
+        item[0] = new Item(37.479099, 126.953787,"저니");
+        item[1] = new Item(37.479231, 126.953418, "모즈");
+        item[2] = new Item(37.477463, 126.958380, "제주상회");
+        item[3] = new Item(37.478847, 126.956183, "키요이");
+        item[4] = new Item(37.478658, 126.955979, "아멜리에");
+        item[5] = new Item(37.478830, 126.955979, "샤로스톤");
+
+        for (int i = 0; i < ITEM_SIZE; i++) {
+            latLng = new LatLng(item[i].getX(), item[i].getY());
+            opFirts.position(latLng);
+            opFirts.title(item[i].getTitle());
+            opFirts.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
+            map.addMarker(opFirts).showInfoWindow();
+
+            Log.e("Tag", String.valueOf(i));
+
+        }
+
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(SEOUL, 16));
+
 
     }
 }
