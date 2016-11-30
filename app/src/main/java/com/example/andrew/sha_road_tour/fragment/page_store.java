@@ -41,12 +41,13 @@ public class page_store extends android.support.v4.app.Fragment {
 
         List<Item> items = new ArrayList<>();
         Item[] item = new Item[ITEM_SIZE];
-        item[0] = new Item(R.drawable.journey, "저니");
-        item[1] = new Item(R.drawable.moz, "모즈");
-        item[2] = new Item(R.drawable.jeju, "제주상회");
-        item[3] = new Item(R.drawable.kiyoi, "키요이");
-        item[4] = new Item(R.drawable.amelie, "아멜리에");
-        item[5] = new Item(R.drawable.sharo, "샤로스톤");
+        item[0] = new Item(R.drawable.journey, "저니", 37.479099, 126.953787);
+        item[1] = new Item(R.drawable.moz, "모즈", 37.479231, 126.953418);
+        item[2] = new Item(R.drawable.jeju, "제주상회", 37.477463, 126.958380);
+        item[3] = new Item(R.drawable.kiyoi, "키요이", 37.478847, 126.956183);
+        item[4] = new Item(R.drawable.amelie, "아멜리에", 37.478658, 126.955979);
+        item[5] = new Item(R.drawable.sharo, "샤로스톤", 37.478830, 126.955979);
+
 
         for (int i = 0; i < ITEM_SIZE; i++) {
             items.add(item[i]);

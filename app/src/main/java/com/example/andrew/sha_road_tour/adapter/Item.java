@@ -26,9 +26,11 @@ public class Item {
         return title;
     }
 
-    public Item(int image, String title) {
+    public Item(int image, String title, double x, double y) {
         this.image = image;
         this.title = title;
+        this.x = x;
+        this.y = y;
     }
     public Item(double x, double y, String title) {
         this.x = x;

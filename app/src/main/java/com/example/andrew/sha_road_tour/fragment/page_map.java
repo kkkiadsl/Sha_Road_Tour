@@ -1,11 +1,7 @@
 package com.example.andrew.sha_road_tour.fragment;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
@@ -44,53 +40,6 @@ public class page_map extends android.support.v4.app.Fragment implements OnMapRe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup contanier, Bundle saveInstanceState) {
         view = inflater.inflate(R.layout.fragment_map, contanier, false);
-        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-        LocationListener locationListener = new LocationListener() {
-
-            public void onLocationChanged(Location location) {
-                // TODO Auto-generated method stub
-                lat = location.getLatitude();
-                lon = location.getLongitude();
-
-                latLng = new LatLng(lat, lon);
-            }
-
-            public void onStatusChanged(String provider, int status,
-                                        Bundle extras) {
-                // TODO Auto-generated method stub
-
-            }
-
-            public void onProviderEnabled(String provider) {
-                // TODO Auto-generated method stub
-
-            }
-
-            public void onProviderDisabled(String provider) {
-                // TODO Auto-generated method stub
-
-            }
-        };
-
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return contanier;
-        }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-
-        String locationProvider = LocationManager.GPS_PROVIDER;
-        Location lastKnowLocation = locationManager.getLastKnownLocation(locationProvider);
-
 
         MapSetting(saveInstanceState);
         return view;
@@ -98,8 +47,6 @@ public class page_map extends android.support.v4.app.Fragment implements OnMapRe
 
     private void MapSetting(Bundle saveInstanceState) {
         mapView = (MapView) view.findViewById(R.id.map);
-
-
 
         Bundle mapState = (saveInstanceState != null)
                 ? saveInstanceState.getBundle(KEY_MAP_SAVED_STATE) : null;
@@ -158,18 +105,18 @@ public class page_map extends android.support.v4.app.Fragment implements OnMapRe
 
         Item[] item = new Item[ITEM_SIZE];
 
-        item[0] = new Item(37.479099, 126.953787,"저니");
-        item[1] = new Item(37.479231, 126.953418, "모즈");
-        item[2] = new Item(37.477463, 126.958380, "제주상회");
-        item[3] = new Item(37.478847, 126.956183, "키요이");
-        item[4] = new Item(37.478658, 126.955979, "아멜리에");
-        item[5] = new Item(37.478830, 126.955979, "샤로스톤");
+        item[0] = new Item(R.drawable.journey_marker, "저니", 37.479099, 126.953787);
+        item[1] = new Item(R.drawable.moz_marker, "모즈", 37.479231, 126.953418);
+        item[2] = new Item(R.drawable.jeju_marker, "제주상회", 37.477463, 126.958380);
+        item[3] = new Item(R.drawable.kiyoi_marker, "키요이", 37.478847, 126.956183);
+        item[4] = new Item(R.drawable.amelie_marker, "아멜리에", 37.478658, 126.955979);
+        item[5] = new Item(R.drawable.sharo_marker, "샤로스톤", 37.478830, 126.955979);
 
         for (int i = 0; i < ITEM_SIZE; i++) {
             latLng = new LatLng(item[i].getX(), item[i].getY());
             opFirts.position(latLng);
             opFirts.title(item[i].getTitle());
-            opFirts.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
+            opFirts.icon(BitmapDescriptorFactory.fromResource(item[i].getImage()));
             map.addMarker(opFirts).showInfoWindow();
 
             Log.e("Tag", String.valueOf(i));
